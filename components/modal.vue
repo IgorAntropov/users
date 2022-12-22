@@ -2,7 +2,7 @@
   <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-container" v-click-outside="outsideClick">
           <div class="modal-header">
             <slot name="header">
 
@@ -25,8 +25,23 @@
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
+
 export default {
   name: "custom-modal",
+  directives: {
+    ClickOutside,
+  },
+  emits: [
+    'closeModal',
+  ],
+  methods: {
+    outsideClick(event) {
+      if (!event.target.classList.contains('show-details')) {
+        this.$emit('closeModal');
+      }
+    },
+  },
 }
 </script>
 

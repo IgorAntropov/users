@@ -3,12 +3,12 @@
     <span class="title">{{ post.title }}</span>
     <span class="body">{{ post.body }}</span>
     <div class="more-info">
-      <button @click="switchShowMore">
+      <button @click="switchShowMore" class="show-details">
         Show more
       </button>
     </div>
 
-    <CustomModal v-if="showMore">
+    <CustomModal v-if="showMore" @closeModal="switchShowMore">
       <template v-slot:header>
         <span class="title">More details</span>
         <button class="close-modal" @click="switchShowMore"><v-icon>mdi-close</v-icon></button>
@@ -41,7 +41,7 @@ export default {
         this.showMore = !this.showMore;
       }
     },
-  }
+  },
 }
 </script>
 

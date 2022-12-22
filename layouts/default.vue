@@ -65,6 +65,16 @@
       app
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        icon
+        title="GoTop"
+        @click.prevent="scrollToTop"
+      >
+        <v-icon>mdi-arrow-up-bold</v-icon>
+      </v-btn>
     </v-footer>
   </v-app>
 </template>
@@ -87,7 +97,13 @@ export default {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
     },
-  }
+    scrollToTop() {
+      document.querySelector('html').scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    },
+  },
 }
 </script>
 
